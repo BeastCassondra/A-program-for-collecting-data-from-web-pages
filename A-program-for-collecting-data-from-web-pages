@@ -1,0 +1,20 @@
+echo "# A-program-for-collecting-data-from-web-pages" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/BeastCassondra/A-program-for-collecting-data-from-web-pages.git
+git push -u origin main
+import requests
+from bs4 import BeautifulSoup
+
+url = input("Enter a URL to scrape: ")
+selector = input("Enter a CSS selector to match: ")
+
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'html.parser')
+elements = soup.select(selector)
+
+for element in elements:
+    print(element.get_text())
+
